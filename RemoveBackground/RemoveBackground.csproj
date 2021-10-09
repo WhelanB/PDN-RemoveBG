@@ -29,9 +29,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Assets\icon.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-  </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>copy "C:\Users\Brian\source\repos\RemoveBackground\RemoveBackground\bin\Debug\net5.0-windows" "C:\Users\Brian\Documents\paint.net App Files\Effects"</PostBuildEvent>
   </PropertyGroup>

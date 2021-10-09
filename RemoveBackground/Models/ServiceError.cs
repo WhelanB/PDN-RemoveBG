@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace RemoveBackground.Models
 {
@@ -7,13 +7,13 @@ namespace RemoveBackground.Models
     /// </summary>
     class ServiceError
     {
-        [JsonProperty(PropertyName = "code")]
+        [JsonPropertyName("code")]
         public string Code { get; set; }
 
-        [JsonProperty(PropertyName = "title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
-        [JsonProperty(PropertyName = "detail")]
+        [JsonPropertyName("detail")]
         public string Details { get; set; }
     }
 }

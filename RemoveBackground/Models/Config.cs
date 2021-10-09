@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace RemoveBackground.Models
 {
@@ -7,7 +7,7 @@ namespace RemoveBackground.Models
     /// </summary>
     class Config
     {
-        [JsonProperty(PropertyName = "api-key")]
+        [JsonPropertyName("api-key")]
         public string ApiKey { get; set; }
     }
 }
