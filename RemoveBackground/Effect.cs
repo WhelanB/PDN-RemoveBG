@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using PaintDotNet;
+﻿using PaintDotNet;
 using PaintDotNet.Effects;
 using RemoveBackground.Models;
 using System;
@@ -8,6 +7,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -50,7 +50,7 @@ namespace RemoveBackground
                 // If it exists, read the API key and return it
                 if (File.Exists(configPath))
                 {
-                    Config config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(configPath));
+                    Config config = JsonSerializer.Deserialize<Config>(File.ReadAllText(configPath));
                     return config.ApiKey;
                 }
                 else
@@ -63,7 +63,7 @@ namespace RemoveBackground
                         {
                             ApiKey = apiKey
                         };
-                        File.WriteAllText(configPath, JsonConvert.SerializeObject(config));
+                        File.WriteAllText(configPath, JsonSerializer.Serialize(config));
                         return apiKey;
                     }
                     else
@@ -131,7 +131,7 @@ namespace RemoveBackground
                 else
                 {
                     string responseContent = response.Content.ReadAsStringAsync().Result;
-                    ServiceErrorResponse serviceErrorResponse = JsonConvert.DeserializeObject<ServiceErrorResponse>(responseContent);
+                    ServiceErrorResponse serviceErrorResponse = JsonSerializer.Deserialize<ServiceErrorResponse>(responseContent);
                     foreach (ServiceError error in serviceErrorResponse.Errors)
                     {
                         Task.Run(() => MessageBox.Show(error.Title, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, (MessageBoxOptions)0x40000));

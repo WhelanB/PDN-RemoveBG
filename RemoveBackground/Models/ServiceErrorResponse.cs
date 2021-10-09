@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace RemoveBackground.Models
 {
@@ -8,7 +8,7 @@ namespace RemoveBackground.Models
     /// </summary>
     class ServiceErrorResponse
     {
-        [JsonProperty(PropertyName = "errors")]
+        [JsonPropertyName("errors")]
         public List<ServiceError> Errors { get; set; }
     }
 }

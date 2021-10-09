@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -28,13 +29,23 @@ namespace RemoveBackground
         private void GetApiKeyLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             getApiKeyLabel.LinkVisited = true;
-            System.Diagnostics.Process.Start("https://www.remove.bg/dashboard#api-key");
+            var browserProcess = new ProcessStartInfo
+            {
+                FileName = "https://www.remove.bg/dashboard#api-key",
+                UseShellExecute = true
+            };
+            System.Diagnostics.Process.Start(browserProcess);
         }
 
         private void OpenConfigLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             openConfigLabel.LinkVisited = true;
-            System.Diagnostics.Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            var folderProcess = new ProcessStartInfo
+            {
+                FileName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                UseShellExecute = true
+            };
+            System.Diagnostics.Process.Start(folderProcess);
         }
     }
 }
